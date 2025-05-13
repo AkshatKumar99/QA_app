@@ -1,3 +1,3 @@
 
-def generate_qa_pairs():
-    return (0,0)
+def generate_qa_pairs(chunks):
+    return (["QUESTIONS"], ["ANSWERS"])
