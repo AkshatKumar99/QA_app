@@ -2,8 +2,7 @@ import os
 import faiss
 import numpy as np
 from dotenv import load_dotenv
-from openai.embeddings_utils import get_embedding
-from backend.utils import load_vector_db
+from backend.utils import load_vector_db, get_embedding
 
 # Load environment variables (API keys, paths)
 load_dotenv()
@@ -33,8 +32,3 @@ def get_relevant_transcripts(query: str, selected_sources: list, N:int=5):
 def cosine_similarity(vec1, vec2):
     """Compute cosine similarity between two vectors."""
     return np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))
-
-def get_embedding(text, engine="text-embedding-ada-002"):
-    response = openai.Embedding.create(model=engine, input=text)
-    return response['data'[0]['embedding']]
-

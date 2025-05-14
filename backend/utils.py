@@ -1,4 +1,5 @@
 import faiss
+import openai
 import numpy as np
 
 def load_vector_db():
@@ -16,4 +17,8 @@ def load_vector_db():
         "index": index,
         "get_chunks_by_source": get_chunks_by_source
     }
+
+def get_embedding(text, engine="text-embedding-ada-002"):
+    response = openai.Embedding.create(model=engine, input=text)
+    return response['data'[0]['embedding']]
 
