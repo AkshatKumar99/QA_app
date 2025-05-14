@@ -1,8 +1,9 @@
 import faiss
-from openai import OpenAI
 import numpy as np
+import streamlit as st
+from openai import OpenAI
 
-client = OpenAI()
+client = OpenAI(api_key=st.secrets["openai"]["api_key"])
 
 def load_vector_db():
     # Path to FAISS index
