@@ -10,7 +10,7 @@ load_dotenv()
 def get_relevant_transcripts(query: str, selected_sources: list, N:int=5):
     
     # Step 1: Create query embedding
-    query_embedding = get_embedding(query, engine="text-embedding-ada-002")
+    query_embedding = get_embedding(query, model="text-embedding-ada-002")
     
     # Step 2: Load pre-existing vector DB (FAISS index)
     vector_db = load_vector_db()
