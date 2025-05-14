@@ -1,6 +1,8 @@
 import faiss
-import openai
+from openai import OpenAI
 import numpy as np
+
+client = OpenAI()
 
 def load_vector_db():
     # Path to FAISS index
@@ -18,7 +20,10 @@ def load_vector_db():
         "get_chunks_by_source": get_chunks_by_source
     }
 
-def get_embedding(text, engine="text-embedding-ada-002"):
-    response = openai.Embedding.create(model=engine, input=text)
-    return response['data'[0]['embedding']]
+def get_embedding(text: str, model: str="text-embedding-ada-002") -> list:
+    response = client.embeddings.create(
+        input=[text],
+        model=model
+    )
+    return response.data[0].embedding
 
