@@ -61,5 +61,5 @@ if st.button("Generate Questions"):
             st.success(f"✅ {len(qa_pairs)} Q&A pairs generated!")
             
             for i, pair in enumerate(qa_pairs):
-                with st.expander(f"Q{i+1}: {pair[0][i]}"):
-                    st.markdown(f"**Answer:** {pair[1][i]}")
+                with st.expander(f"Q{i+1}: {pair[0]}"):
+                    st.markdown(f"**Answer:** {pair[1]}")
