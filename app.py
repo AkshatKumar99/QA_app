@@ -54,11 +54,11 @@ if st.button("Generate Questions"):
         st.warning("⚠️ Please enter a medical topic.")
     else:
         with st.spinner("Fetching transcripts and generating Q&A..."):
-            chunks = get_relevant_transcripts(topic, selected_sources, debugging)
+            chunks = get_relevant_transcripts(topic, selected_sources, debugging=debugging)
         if not chunks:
             st.error("❌ No relevant podcast content found.")
         else:
-            qa_pairs = generate_qa_pairs(chunks, debugging)
+            qa_pairs = generate_qa_pairs(chunks, debugging=debugging)
             st.success(f"✅ {len(qa_pairs)} Q&A pairs generated!")
             
             for i, pair in enumerate(qa_pairs):
