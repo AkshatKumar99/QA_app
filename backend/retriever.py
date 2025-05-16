@@ -10,6 +10,7 @@ load_dotenv()
 def get_relevant_transcripts(query: str, selected_sources: list, N:int=5, debugging=False):
     
     if not debugging:
+        print('NOT DEBUGGING')
         # Step 1: Create query embedding
         query_embedding = get_embedding(query, model="text-embedding-ada-002")
         

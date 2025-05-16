@@ -8,8 +8,6 @@ from dotenv import load_dotenv
 load_dotenv()
 st.set_page_config(page_title="MedPod Q&A", layout="centered")
 
-debugging = True
-
 st.markdown(
     """
     <style>
@@ -49,16 +47,17 @@ selected_sources = st.multiselect(
 )
 
 # Submit button
+debug = True
 if st.button("Generate Questions"):
     if not topic.strip():
         st.warning("⚠️ Please enter a medical topic.")
     else:
         with st.spinner("Fetching transcripts and generating Q&A..."):
-            chunks = get_relevant_transcripts(topic, selected_sources, debugging=debugging)
+            chunks = get_relevant_transcripts(topic, selected_sources, debugging=debug)
         if not chunks:
             st.error("❌ No relevant podcast content found.")
         else:
-            qa_pairs = generate_qa_pairs(chunks, debugging=debugging)
+            qa_pairs = generate_qa_pairs(chunks, debugging=debug)
             st.success(f"✅ {len(qa_pairs)} Q&A pairs generated!")
             
             for i, pair in enumerate(qa_pairs):
