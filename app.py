@@ -54,7 +54,7 @@ if use_podcast_sources:
     )
 
 # Submit button
-debug = True
+debug = st.toggle("🛠️ Debug mode (use mock responses)", value=False)
 if st.button("Generate Questions"):
     if not topic.strip():
         st.warning("⚠️ Please enter a medical topic.")
