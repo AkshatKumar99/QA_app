@@ -18,7 +18,7 @@ def generate_qa_from_llm_only(topic, debugging=False):
     
     # Load prompt template
     prompt_path = Path('backend/base_prompt.txt') 
-    if not prompt_path.exist():
+    if not prompt_path.exists():
         st.error("Prompt file 'base_prompt.txt' not found.")
         return []
     
@@ -34,6 +34,10 @@ def generate_qa_from_llm_only(topic, debugging=False):
     except Exception as e:
         st.error(f'OpenAI API error: {e}')
         return []
+    
+    raw_output = response.choices[0].message.content.strip()
+    if debugging:
+        st.text_area("Raw Output", raw_output, height=300)
     
     return _parse_qa_output(raw_output)
     
