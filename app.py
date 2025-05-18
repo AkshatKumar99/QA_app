@@ -59,6 +59,7 @@ if st.button("Generate Questions"):
     if not topic.strip():
         st.warning("⚠️ Please enter a medical topic.")
     else:
+        chunks = False
         with st.spinner("🔎 Thinking..."):
             if use_podcast_sources:
                 chunks = get_relevant_transcripts(topic, selected_sources, debugging=debug)
@@ -66,7 +67,7 @@ if st.button("Generate Questions"):
                 st.warning("❌ No relevant podcast content found. Falling back to using OpenAI only.")
                 qa_pairs = generate_qa_from_llm_only(topic, debugging=debug)
             else:
-                qa_pairs = generate_qa_from_llm_only(debugging=debug)
+                qa_pairs = generate_qa_pairs(chunks, debugging=debug)
         
         if qa_pairs:
             st.success(f"✅ {len(qa_pairs)} Q&A pairs generated!")    
