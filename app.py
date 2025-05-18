@@ -65,7 +65,7 @@ if st.button("Generate Questions"):
                 chunks = get_relevant_transcripts(topic, selected_sources, debugging=debug)
             if not chunks:
                 st.warning("❌ No relevant podcast content found. Falling back to using OpenAI only.")
-                qa_pairs = generate_qa_from_llm_only(topic, debugging=debug)
+                qa_pairs = generate_qa_from_llm_only(debugging=debug)
             else:
                 qa_pairs = generate_qa_pairs(chunks, debugging=debug)
         
